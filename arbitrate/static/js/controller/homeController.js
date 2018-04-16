@@ -1,417 +1,34 @@
 var app = angular.module('app');
-app.config(function($interpolateProvider) {
-   $interpolateProvider.startSymbol('//').endSymbol('//');
+
+app.config(function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('//').endSymbol('//');
 });
-app.controller('homeController', ['$scope', function ($scope) {
+
+app.controller('homeController', ['$scope','$http', function ($scope,$http) {
 
     $scope.currency = {};
     $scope.currency.options = ['Currency1', 'Currency2', 'Currency3'];
-    console.log($scope.currency.options[0])
     $scope.currency.selectedCurrency = $scope.currency.options[0];
-    console.log($scope.currency.selectedCurrency)
-    // $scope.serverData = [data]
 
-    $scope.serverData = [
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 0
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 1
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 0
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 1
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 0
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 1
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 0
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 1
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 0
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 2
-        },
-        {
-            'sellHere': 'hitbtc',
-            'cryptoPair': 'ZEC/BTC',
-            'ask': 0.05100556,
-            'dateTime': new Date(),
-            'buyHere': 'yobit',
-            'spread': -0.000214440000000003,
-            'bidVolume': 2.797,
-            'bid': 0.05122,
-            'askVolume': 0.06774932,
-            'gain': 0.0000145281641808002,
-            'state': 1
-        },
-        {
-            'sellHere': 'southxchange',
-            'cryptoPair': 'BCH/BTC',
-            'ask': 0.142,
-            'dateTime': new Date(),
-            'buyHere': 'hitbtc',
-            'spread': -0.00161408000000002,
-            'bidVolume': 0.00448751,
-            'bid': 0.14361408,
-            'askVolume': 617.305,
-            'gain': 0.996379654400011,
-            'state': 1
-        }
-    ];
+    $scope.getServerData = function(){
+        $http({
+            method: 'GET',
+            url: '/api/getData'
+        }).then(function successCallback(response){
+            $scope.arbtGridOptions.data = response.data.data.sort(function(a, b){
+                return b.state - a.state
+            });
+        })
+    };
 
-
-    function highlightRow(grid, row){
-        if(row.entity.state === 2){
+    function highlightRow(grid, row) {
+        if (row.entity.type === "strong") {
             return 'highlight-green'
-        } else if (row.entity.state === 0){
-            return 'highlight-red'
-        } else if (row.entity.state === 1) {
-            return 'highlight-yellow'}
+        // } else if (row.entity.type === "strong") {
+        //     return 'highlight-red'
+        } else if (row.entity.type === "weak") {
+            return 'highlight-yellow'
+        }
     }
 
     $scope.arbtGridOptions = {
@@ -424,13 +41,13 @@ app.controller('homeController', ['$scope', function ($scope) {
         enableColumnResizing: true,
         columnDefs: [
             {
-                name: 'sellHere',
+                name: 'sell_here',
                 displayName: 'Sell Here',
                 cellTooltip: true,
                 cellClass: highlightRow
             },
             {
-                name: 'cryptoPair',
+                name: 'crypto_pair',
                 displayName: 'Crypto Pair',
                 cellTooltip: true,
                 cellClass: highlightRow
@@ -442,7 +59,7 @@ app.controller('homeController', ['$scope', function ($scope) {
                 cellClass: highlightRow
             },
             {
-                name: 'dateTime',
+                name: 'date_time',
                 displayName: 'Date Time',
                 cellTooltip: true,
                 type: 'date',
@@ -450,7 +67,7 @@ app.controller('homeController', ['$scope', function ($scope) {
                 cellClass: highlightRow
             },
             {
-                name: 'buyHere',
+                name: 'crypto_pair',
                 displayName: 'Buy Here',
                 cellTooltip: true,
                 cellClass: highlightRow
@@ -462,7 +79,7 @@ app.controller('homeController', ['$scope', function ($scope) {
                 cellClass: highlightRow
             },
             {
-                name: 'bidVolume',
+                name: 'bid_volume',
                 displayName: 'Bid Volume',
                 cellTooltip: true,
                 cellClass: highlightRow
@@ -474,7 +91,7 @@ app.controller('homeController', ['$scope', function ($scope) {
                 cellClass: highlightRow
             },
             {
-                name: 'askVolume',
+                name: 'ask_volume',
                 displayName: 'Ask Volume',
                 cellTooltip: true,
                 cellClass: highlightRow
@@ -489,10 +106,9 @@ app.controller('homeController', ['$scope', function ($scope) {
         data: []
     };
 
-    $scope.arbtGridOptions.data = $scope.serverData.sort(function(a, b){
-        return b.state-a.state
-    });
-
+    // $scope.arbtGridOptions.data = $scope.serverData.sort(function(a, b){
+    //     return b.state-a.state
+    // });
 
     $scope.exchange1model = [];
     $scope.exchange1data = [
@@ -511,7 +127,7 @@ app.controller('homeController', ['$scope', function ($scope) {
         }, {
             id: 5,
             label: "Danny"
-    }];
+        }];
     $scope.exchange1settings = {
         smartButtonMaxItems: 3
     };
@@ -544,4 +160,8 @@ app.controller('homeController', ['$scope', function ($scope) {
     $scope.exchange2text = {
         buttonDefaultText: "Exchange 2"
     };
+
+    (function(){
+        $scope.getServerData();
+    })()
 }]);

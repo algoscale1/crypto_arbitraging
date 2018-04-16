@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from arbitrate.user_views import TradeData
+from arbitrate.user_views import TradeData, GetData
 # from django.conf import settings
 # from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^index',TradeData.as_view())
+    url(r'^index',TradeData.as_view()),
+    url(r'^getData',GetData.as_view()),
 ]

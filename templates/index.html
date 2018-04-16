@@ -48,54 +48,7 @@
     </div>
     <div class="clearfix"></div>
     <div style="background-color: white" class="table-output m-tb-7">
-        <table>
-            <thead class="table-header">
-            <tr>
-                <th>Sell Here</th>
-                <th>Crypto Pair</th>
-                <th>Ask</th>
-                <th>Date Time</th>
-                <th>Buy Here</th>
-                <th>Spread</th>
-                <th>Bid Vloume</th>
-                <th>Bid</th>
-                <th>Ask Volume</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for each_row in data %}
-            <tr>
-                <td class="text-capitalize">{{each_row.sell_here}}</td>
-                <td>{{each_row.crypto_pair}}</td>
-                <td>{{each_row.ask}}</td>
-               {# <td>{{each_row.dateTime}}</td> #}
-                <td>{{each_row.date_time | date:'Y-M-d H:i:s'}}</td>
-                <td class="text-capitalize">{{each_row.buy_here}}</td>
-                <td>{{each_row.spread}}</td>
-                <td>{{each_row.bid_volume}}</td>
-                <td>{{each_row.bid}}</td>
-                <td>{{each_row.ask_volume}}</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <!--<div class="table-pagination">-->
-        <!--<a title="Page to first" ng-class="{'disabled': currentPage === 1}"-->
-        <!--class="pagination-start glyphicon glyphicon-step-backward disabled" ng-click="goToStart()"></a>-->
-        <!--<a title="Page back" ng-class="{'disabled': currentPage === 1}"-->
-        <!--class="pagination-prev glyphicon glyphicon-chevron-left" ng-click="goToPrev($event)"></a>-->
-        <!--{{currentPage}}/{{totalPages}}-->
-        <!--<a title="Page forward" ng-class="{'disabled': currentPage === totalPages}"-->
-        <!--class="pagination-next glyphicon glyphicon-chevron-right" ng-click="goToNext($event)"></a>-->
-        <!--<a title="Page to last" ng-class="{'disabled': currentPage === totalPages}"-->
-        <!--class="pagination-last glyphicon glyphicon-step-forward" ng-click="goToLast()"></a>-->
-        <!--<select class="row-selection" ng-change="setTableRow()" ng-model="displayRows">-->
-        <!--<option ng-repeat="rows in totalRows track by $index" value="{{rows}}">{{rows}}</option>-->
-        <!--</select> items per page-->
-        <!--<span class="total-items pull-right">-->
-        <!--1 - {{displayRows}} of {{strategyTableOutput.length}} items-->
-        <!--</span>-->
-        <!--</div>-->
+        <div id="arbtGridOptions" ui-grid="arbtGridOptions" class="grid" ui-grid-pagination></div>
     </div>
 </div>
 
