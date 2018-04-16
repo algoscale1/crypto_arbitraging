@@ -1,0 +1,33 @@
+<div class="p-x-20 p-b-20" style="background-color: #f0f0f0">
+    <div class="pull-right">
+        <ul class="list-unstyled list-inline m-0">
+            <li>
+                <div class="exchange1 m-y-10">
+                    <div ng-dropdown-multiselect="" options="exchange1data" selected-model="exchange1model"
+                         extra-settings="exchange1settings" translation-texts="exchange1text"></div>
+                </div>
+            </li>
+            <li>
+                <div class="exchange2 m-y-10">
+                    <div ng-dropdown-multiselect="" options="exchange2data" selected-model="exchange2model"
+                         extra-settings="exchange2settings" translation-texts="exchange2text"></div>
+                </div>
+            </li>
+            <li>
+                <select id="currency" class="form-control text-capitalize m-y-10" ng-model="currency.selectedCurrency"
+                        name="currency">
+                    <option ng-repeat="items in currency.options track by $index"
+                            value="{{items}}">{{items}}
+                    </option>
+                </select>
+            </li>
+            <li>
+                <button ng-click="updateGrid()" class="btn btn-primary text-uppercase p-y-5" type="submit">
+                    apply
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div style="background-color: white" ui-grid="arbtGridOptions" class="grid" ui-grid-exporter ui-grid-pagination ui-grid-resize-columns></div>
+</div>

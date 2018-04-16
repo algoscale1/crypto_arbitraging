@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+.bg-blue {
+    background-color: lightblue;
+}
+
+.bg-gray {
+    background-color: lightgrey;
+}
+
+.m-0 {
+    margin: 0
+}
+
+.m-t-10 {
+    margin-top: 10px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-y-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.m-tb-7 {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.p-y-5 {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.p-t-10 {
+    padding-top: 10px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px;
+}
+
+.p-x-20 {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.p-b-20 {
+    padding-bottom: 20px;
+}
+
+.p-y-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.exchange1 button,
+.exchange2 button {
+    width: 150px;
+}
+
+.table-wrapper {
+  height: calc(100vh - 59px);
+}
+
+.highlight-green {
+    background-color: #c8e6c9 !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.highlight-red {
+    background-color: #ffcdd2e8 !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.highlight-yellow {
+    background-color: #fff9c4 !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.table-output table {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.table-output table tbody {
+    display: block;
+    overflow-y: scroll;
+    width: 100%
+}
+
+.table-output table tbody::-webkit-scrollbar {
+    background-color: lightgrey;
+    width: 5px;
+    border-radius: 5px
+}
+
+.table-output table tbody::-webkit-scrollbar-thumb {
+    background-color: grey;
+    width: 4px;
+    border-radius: 5px
+}
+
+.table-output table thead,
+.table-output table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-output table thead {
+    width: calc(100% - .3em)
+}
+
+.table-output table tbody tr td,
+.table-output table thead tr th {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    padding: 5px;
+}
+
+.table-output table th {
+    background: linear-gradient(white, #eee);
+}
