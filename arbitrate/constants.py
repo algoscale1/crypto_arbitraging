@@ -8,5 +8,5 @@ EXCHANGES = ['allcoin', 'anxpro', 'binance', 'bitbay', 'bitcoincoid', 'bitfinex'
              'quadrigacx', 'quoinex', 'southxchange', 'therock',
              'tidex', 'wex', 'yobit', 'zaif', 'zb']
 
-CRYPTO_PAIR = {'BCH/BTC', 'BTG/BTC', 'DASH/BTC', 'DOGE/BTC', 'ETH/BTC', 'LTC/BTC', 'NXT/BTC', 'PPC/BTC', 'SMS/BTC', 
-				'STRAT/BTC',  'XMR/BTC',  'XVG/BTC'}
+CRYPTO_PAIRS = ['BCH/BTC', 'BTG/BTC', 'DASH/BTC', 'DOGE/BTC', 'ETH/BTC', 'LTC/BTC', 'NXT/BTC', 'PPC/BTC', 'SMS/BTC', 
+				'STRAT/BTC',  'XMR/BTC',  'XVG/BTC']

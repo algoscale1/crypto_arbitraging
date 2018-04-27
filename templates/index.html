@@ -19,25 +19,22 @@
     <div class="pull-right">
         <ul class="list-unstyled list-inline m-0">
             <li>
-                <div class="exchange1 m-y-10">
-                    <div data-ng-dropdown-multiselect="" options="exchange1data" selected-model="exchange1model"
-                         extra-settings="exchange1settings" translation-texts="exchange1text"></div>
+                <div class="exchange m-y-10">
+                    <div data-ng-dropdown-multiselect="" options="buyHeredata" selected-model="buyHeremodel"
+                         extra-settings="buyHeresettings" translation-texts="buyHeretext"></div>
                 </div>
             </li>
             <li>
-                <div class="exchange2 m-y-10">
-                    <div data-ng-dropdown-multiselect="" options="exchange2data" selected-model="exchange2model"
-                         extra-settings="exchange2settings" translation-texts="exchange2text"></div>
+                <div class="exchange m-y-10">
+                    <div data-ng-dropdown-multiselect="" options="sellHeredata" selected-model="sellHeremodel"
+                         extra-settings="sellHeresettings" translation-texts="sellHeretext"></div>
                 </div>
             </li>
             <li>
-                <select id="currency" class="form-control text-capitalize m-y-10"
-                        data-ng-model="currency.selectedCurrency"
-                        name="currency">
-                    <option data-ng-repeat="currency_row in currency.options track by $index"
-                            value="//currency_row//">//currency_row//
-                    </option>
-                </select>
+                <div class="exchange m-y-10">
+                    <div data-ng-dropdown-multiselect="" options="cryptoPairsdata" selected-model="cryptoPairsmodel"
+                         extra-settings="cryptoPairssettings" translation-texts="cryptoPairstext"></div>
+                </div>
             </li>
             <li>
                 <button data-ng-click="updateTable()" class="btn btn-primary text-uppercase p-y-5" type="submit">
@@ -48,37 +45,37 @@
     </div>
     <div class="clearfix"></div>
     <div style="background-color: white" class="table-output m-tb-7">
-        <!--<div id="arbtGridOptions" ui-grid="arbtGridOptions" class="grid" ui-grid-pagination></div>-->
-        <table class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                <th>Sell Here</th>
-                <th>Crypto Pair</th>
-                <th>Ask</th>
-                <th>Date Time</th>
-                <th>Buy Here</th>
-                <th>Spread</th>
-                <th>Bid Volume</th>
-                <th>Bid</th>
-                <th>Ask Volume</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for i in data %}
-                <tr>
-                    <td>{{i.sell_here}}</td>
-                    <td>{{i.crypto_pair}}</td>
-                    <td>{{i.ask}}</td>
-                    <td>{{i.date_time}}</td>
-                    <td>{{i.buy_here}}</td>
-                    <td>{{i.spread}}</td>
-                    <td>{{i.bid_volume}}</td>
-                    <td>{{i.bid}}</td>
-                    <td>{{i.ask_volume}}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div id="arbtGridOptions" ui-grid="arbtGridOptions" class="grid" ui-grid-pagination></div>
+        <!--<table class="table table-striped table-bordered">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th>Sell Here</th>-->
+                <!--<th>Crypto Pair</th>-->
+                <!--<th>Ask</th>-->
+                <!--<th>Date Time</th>-->
+                <!--<th>Buy Here</th>-->
+                <!--<th>Spread</th>-->
+                <!--<th>Bid Volume</th>-->
+                <!--<th>Bid</th>-->
+                <!--<th>Ask Volume</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--{% for i in data %}-->
+                <!--<tr>-->
+                    <!--<td>{{i.sell_here}}</td>-->
+                    <!--<td>{{i.crypto_pair}}</td>-->
+                    <!--<td>{{i.ask}}</td>-->
+                    <!--<td>{{i.date_time}}</td>-->
+                    <!--<td>{{i.buy_here}}</td>-->
+                    <!--<td>{{i.spread}}</td>-->
+                    <!--<td>{{i.bid_volume}}</td>-->
+                    <!--<td>{{i.bid}}</td>-->
+                    <!--<td>{{i.ask_volume}}</td>-->
+                <!--</tr>-->
+            <!--{% endfor %}-->
+            <!--</tbody>-->
+        <!--</table>-->
     </div>
 </div>
 

@@ -1,157 +1,195 @@
 var app = angular.module('app');
 
-app.config(function ($interpolateProvider) {
-    $interpolateProvider.startSymbol('//').endSymbol('//');
-});
+// app.config(function ($interpolateProvider) {
+//     $interpolateProvider.startSymbol('//').endSymbol('//');
+// });
 
-app.controller('homeController', ['$scope','$http', function ($scope,$http) {
+app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
 
-    $scope.currency = {};
-    $scope.currency.options = ['Crypto Pair', 'Currency', 'Currency'];
-    $scope.currency.selectedCurrency = $scope.currency.options[0];
+    // $scope.currency = {};
+    // $scope.currency.options = ['Crypto Pair', 'Currency', 'Currency'];
+    // $scope.currency.selectedCurrency = $scope.currency.options[0];
+    // $scope.tableData = [];
+    $scope.buyHeremodel = [];
+    $scope.buyHeredata = [];
+    $scope.sellHeredata = [];
+    $scope.cryptoPairsdata = [];
 
-    $scope.getServerData = function(){
+    $scope.getServerData = function () {
         $http({
             method: 'GET',
-            url: '/api/getData'
-        }).then(function successCallback(response){
-            $scope.arbtGridOptions.data = response.data.data.sort(function(a, b){
+            url: '/api/getExchanges'
+        }).then(function successCallback(response) {
+            response.data[0].exchanges.forEach(function (item, index) {
+                $scope.buyHeredata.push({
+                    label: item,
+                    id: index + 1
+                });
+                $scope.sellHeredata.push({
+                    label: item,
+                    id: index + 1
+                });
+            });
+            response.data[0].crypto_pairs.forEach(function (item, index) {
+                $scope.cryptoPairsdata.push({
+                    label: item,
+                    id: index + 1
+                });
+            });
+            // $scope.tableData = response.data[0].data;
+            $scope.arbtGridOptions.data = response.data[0].data.sort(function (a, b) {
                 return b.type - a.type;
             });
         })
     };
 
     function highlightRow(grid, row) {
-        if (row.entity.type === 1) {
+        if (row.entity.type) {
             return 'highlight-green'
-        // } else if (row.entity.type === "strong") {
-        //     return 'highlight-red'
         } else if (row.entity.type === 0) {
-            return 'highlight-yellow'
+            return 'highlight-red'
         }
     }
 
-//    $scope.arbtGridOptions = {
-//        paginationPageSizes: [15, 20, 25, 50, 75],
-//        paginationPageSize: 20,
-//        useExternalPagination: false,
-//        enableGridMenu: true,
-//        enableColumnMenus: false,
-//        enableSorting: false,
-//        enableColumnResizing: true,
-//        columnDefs: [
-//            {
-//                name: 'sell_here',
-//                displayName: 'Sell Here',
-//                cellTooltip: true,
-//                cellClass: highlightRow
-//            },
-//            {
-//                name: 'crypto_pair',
-//                displayName: 'Crypto Pair',
-//                cellTooltip: true,
-//                cellClass: highlightRow
-//            },
-//            {
-//                name: 'ask',
-//                displayName: 'Ask',
-//                cellTooltip: true,
-//                cellClass: highlightRow
-//            },
-//            {
-//                name: 'date_time',
-//                displayName: 'Date Time',
-//                cellTooltip: true,
-//                type: 'date',
-//                cellFilter: 'date:\'yyyy-MM-dd HH:mm\' ',
-//                cellClass: highlightRow
-//            },
-//            {
-//                name: 'buy_here',
-//                displayName: 'Buy Here',
-//                cellTooltip: true,
-//                cellClass: highlightRow
-//            },
-//            {
-//                name: 'spread',
-//                displayName: 'Spread',
-//                cellTooltip: true,
-//                cellClass: highlightRow
-//            },
-//            {
-//                name: 'bid_volume',
-//                displayName: 'Bid Volume',
-//                cellTooltip: true,
-//                cellClass: highlightRow
-//            },
-//            {
-//                name: 'bid',
-//                displayName: 'Bid',
-//                cellTooltip: true,
-//                cellClass: highlightRow
-//            },
-//            {
-//                name: 'ask_volume',
-//                displayName: 'Ask Volume',
-//                cellTooltip: true,
-//                cellClass: highlightRow
-//            }
-//        ],
-//        data: []
-//    };
-
-    $scope.exchange1model = [];
-    $scope.exchange1data = [
-        {
-            id: 1,
-            label: "David"
-        }, {
-            id: 2,
-            label: "Jhon"
-        }, {
-            id: 3,
-            label: "Lisa"
-        }, {
-            id: 4,
-            label: "Nicole"
-        }, {
-            id: 5,
-            label: "Danny"
-        }];
-    $scope.exchange1settings = {
-        smartButtonMaxItems: 3
+    $scope.arbtGridOptions = {
+        paginationPageSizes: [15, 20, 25, 50, 75],
+        paginationPageSize: 20,
+        enableGridMenu: false,
+        enableColumnMenus: false,
+        enableSorting: false,
+        enableColumnResizing: false,
+        // enablePaginationControls: false,
+        columnDefs: [
+            {
+                name: 'sell_here',
+                displayName: 'Sell Here',
+                cellTooltip: true,
+                cellClass: highlightRow
+            },
+            {
+                name: 'crypto_pair',
+                displayName: 'Crypto Pair',
+                cellTooltip: true,
+                cellClass: highlightRow
+            },
+            {
+                name: 'ask',
+                displayName: 'Ask',
+                cellTooltip: true,
+                cellClass: highlightRow
+            },
+            {
+                name: 'date_time',
+                displayName: 'Date Time',
+                cellTooltip: true,
+                type: 'date',
+                cellFilter: 'date:\'yyyy-MM-dd HH:mm\' ',
+                cellClass: highlightRow
+            },
+            {
+                name: 'buy_here',
+                displayName: 'Buy Here',
+                cellTooltip: true,
+                cellClass: highlightRow
+            },
+            {
+                name: 'spread',
+                displayName: 'Spread',
+                cellTooltip: true,
+                cellClass: highlightRow
+            },
+            {
+                name: 'bid_volume',
+                displayName: 'Bid Volume',
+                cellTooltip: true,
+                cellClass: highlightRow
+            },
+            {
+                name: 'bid',
+                displayName: 'Bid',
+                cellTooltip: true,
+                cellClass: highlightRow
+            },
+            {
+                name: 'ask_volume',
+                displayName: 'Ask Volume',
+                cellTooltip: true,
+                cellClass: highlightRow
+            }
+        ],
+        data: []
     };
-    $scope.exchange1text = {
+
+
+    $scope.buyHeresettings = {
+        smartButtonMaxItems: 3,
+        enableSearch: true
+    };
+    $scope.buyHeretext = {
         buttonDefaultText: "Buy Here"
     };
 
 
-    $scope.exchange2model = [];
-    $scope.exchange2data = [
-        {
-            id: 1,
-            label: "Rishu"
-        }, {
-            id: 2,
-            label: "Jitender"
-        }, {
-            id: 3,
-            label: "Rishabh"
-        }, {
-            id: 4,
-            label: "Purushotam"
-        }, {
-            id: 5,
-            label: "Rahul"
-        }];
-    $scope.exchange2settings = {
-        smartButtonMaxItems: 3
+    $scope.sellHeremodel = [];
+    $scope.sellHeresettings = {
+        smartButtonMaxItems: 3,
+        enableSearch: true
     };
-    $scope.exchange2text = {
+    $scope.sellHeretext = {
         buttonDefaultText: "Sell Here"
     };
 
-    (function(){
+
+    $scope.cryptoPairsmodel = [];
+    $scope.cryptoPairssettings = {
+        smartButtonMaxItems: 3
+    };
+    $scope.cryptoPairstext = {
+        buttonDefaultText: "Crypto Pairs"
+    };
+
+    $scope.updateTable = function () {
+        $scope.sellArr = [];
+        $scope.buyArr = [];
+        $scope.pairArr = [];
+        $scope.buyHeredata.forEach(function (item, index) {
+            $scope.buyHeremodel.forEach(function (value, num) {
+                if (item.id === value.id) {
+                    $scope.buyArr.push(item.label);
+                }
+            });
+            $scope.sellHeremodel.forEach(function (value, num) {
+                if (item.id === value.id) {
+                    $scope.sellArr.push(item.label);
+                }
+            });
+        });
+        $scope.cryptoPairsdata.forEach(function (item, index) {
+            $scope.cryptoPairsmodel.forEach(function (value, num) {
+                if (item.id === value.id) {
+                    $scope.pairArr.push(item.label);
+                }
+            });
+        });
+
+        var myObj = [
+            {
+                name: 'buy',
+                value: JSON.stringify($scope.buyArr)
+            },
+            {
+                name: 'sell',
+                value: JSON.stringify($scope.sellArr)
+            },
+            {
+                name: 'pair',
+                value: JSON.stringify($scope.pairArr)
+            }
+        ];
+//        $http.get('/api/fillter',{'buy':'fdsf', 'sell':8});
+    };
+
+    (function () {
         $scope.getServerData();
     })()
 }]);
