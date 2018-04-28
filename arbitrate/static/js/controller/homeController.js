@@ -196,7 +196,28 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
 
                 }
             };
-        $http.post('/api/fillter',myObj,config);
+        $http.post('/api/fillter',myObj,config).then(function successCallback(response) {
+            response.data[0].exchanges.forEach(function (item, index) {
+                $scope.buyHeredata.push({
+                    label: item,
+                    id: index + 1
+                });
+                $scope.sellHeredata.push({
+                    label: item,
+                    id: index + 1
+                });
+            });
+            response.data[0].crypto_pairs.forEach(function (item, index) {
+                $scope.cryptoPairsdata.push({
+                    label: item,
+                    id: index + 1
+                });
+            });
+            // $scope.tableData = response.data[0].data;
+            $scope.arbtGridOptions.data = response.data[0].data.sort(function (a, b) {
+                return b.type - a.type;
+            });
+        });
     };
 
     (function () {
