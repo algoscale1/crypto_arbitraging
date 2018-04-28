@@ -1,9 +1,12 @@
 var app = angular.module('app');
 
-// app.config(function ($interpolateProvider) {
-//     $interpolateProvider.startSymbol('//').endSymbol('//');
-// });
-
+ //app.config(function ($interpolateProvider) {
+ //    $interpolateProvider.startSymbol('//').endSymbol('//');
+ //});
+//app.config(function($httpProvider) {
+//    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+//    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+//});
 app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
 
     // $scope.currency = {};
@@ -172,24 +175,33 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
             });
         });
 
-        var myObj = [
-            {
-                name: 'buy',
-                value: JSON.stringify($scope.buyArr)
-            },
-            {
-                name: 'sell',
-                value: JSON.stringify($scope.sellArr)
-            },
-            {
-                name: 'pair',
-                value: JSON.stringify($scope.pairArr)
-            }
-        ];
-//        $http.get('/api/fillter',{'buy':'fdsf', 'sell':8});
+        //var myObj = [
+        //    {
+        //        name: 'buy',
+        //        value: JSON.stringify($scope.buyArr)
+        //    },
+        //    {
+        //        name: 'sell',
+        //        value: JSON.stringify($scope.sellArr)
+        //    },
+        //    {
+        //        name: 'pair',
+        //        value: JSON.stringify($scope.pairArr)
+        //    }
+        //];
+        var myObj = JSON.stringify({"buy":$scope.buyArr,"sell":$scope.sellArr,"pair":$scope.pairArr});
+        var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+
+                }
+            };
+        $http.post('/api/fillter',myObj,config);
     };
 
     (function () {
         $scope.getServerData();
     })()
 }]);
+
+            $http.post('/ServerRequest/PostDataResponse', data, config)
