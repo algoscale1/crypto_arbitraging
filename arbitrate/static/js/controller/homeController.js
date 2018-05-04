@@ -42,14 +42,12 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
                 });
             });
             $scope.tableData = response.data[0].data;
-            $scope.arbtGridOptions.data = response.data[0].data.sort(function (a, b) {
-                return b.type - a.type;
-            });
+            $scope.arbtGridOptions.data = response.data[0].data;
         })
     };
 
     function highlightRow(grid, row) {
-        if (row.entity.type) {
+        if (row.entity.type === 1) {
             return 'highlight-green'
         } else if (row.entity.type === 0) {
             return 'highlight-red'
@@ -205,9 +203,7 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
         });
         }
         console.log($scope.filterData);
-        $scope.arbtGridOptions.data = $scope.filterData.sort(function (a, b) {
-                return b.type - a.type;
-            });
+        $scope.arbtGridOptions.data = $scope.filterData;
 
 //        var myObj = new FormData();
 //        myObj.append('buy',$scope.buyArr);
