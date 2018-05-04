@@ -172,21 +172,30 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
             });
         });
 
-        var myObj = [
-            {
-                name: 'buy',
-                value: JSON.stringify($scope.buyArr)
-            },
-            {
-                name: 'sell',
-                value: JSON.stringify($scope.sellArr)
-            },
-            {
-                name: 'pair',
-                value: JSON.stringify($scope.pairArr)
-            }
-        ];
-//        $http.get('/api/fillter',{'buy':'fdsf', 'sell':8});
+//        var myObj = [{
+//                name: 'buy', value: $scope.buyArr
+//            },
+//            {
+//                name: 'sell', value: $scope.sellArr
+//            },
+//            {
+//                name: 'pair', value: $scope.pairArr
+//            }];
+
+        var myObj = new FormData();
+        myObj.append('buy',$scope.buyArr);
+        myObj.append('sell',$scope.sellArr);
+        myObj.append('pair',$scope.pairArr);
+
+
+        $http.post('/api/fillter', myObj, {
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        }).then(function(response){
+            $scope.arbtGridOptions.data = response.data[0].data.sort(function (a, b) {
+                return b.type - a.type;
+            });
+        })
     };
 
     (function () {
