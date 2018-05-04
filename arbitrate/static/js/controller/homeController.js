@@ -17,12 +17,14 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
     $scope.buyHeredata = [];
     $scope.sellHeredata = [];
     $scope.cryptoPairsdata = [];
+    $scope.tableData = []
 
     $scope.getServerData = function () {
         $http({
             method: 'GET',
             url: '/api/getExchanges'
         }).then(function successCallback(response) {
+        console.log(response);
             response.data[0].exchanges.forEach(function (item, index) {
                 $scope.buyHeredata.push({
                     label: item,
@@ -39,7 +41,7 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
                     id: index + 1
                 });
             });
-            // $scope.tableData = response.data[0].data;
+            $scope.tableData = response.data[0].data;
             $scope.arbtGridOptions.data = response.data[0].data.sort(function (a, b) {
                 return b.type - a.type;
             });
@@ -156,19 +158,19 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
         $scope.buyArr = [];
         $scope.pairArr = [];
         $scope.buyHeredata.forEach(function (item, index) {
-            $scope.buyHeremodel.forEach(function (value, num) {
+            $scope.buyHeremodel.forEach(function (value) {
                 if (item.id === value.id) {
                     $scope.buyArr.push(item.label);
                 }
             });
-            $scope.sellHeremodel.forEach(function (value, num) {
+            $scope.sellHeremodel.forEach(function (value) {
                 if (item.id === value.id) {
                     $scope.sellArr.push(item.label);
                 }
             });
         });
         $scope.cryptoPairsdata.forEach(function (item, index) {
-            $scope.cryptoPairsmodel.forEach(function (value, num) {
+            $scope.cryptoPairsmodel.forEach(function (value) {
                 if (item.id === value.id) {
                     $scope.pairArr.push(item.label);
                 }
@@ -176,30 +178,51 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
         });
 
 
-//        var myObj = [{
-//                name: 'buy', value: $scope.buyArr
-//            },
-//            {
-//                name: 'sell', value: $scope.sellArr
-//            },
-//            {
-//                name: 'pair', value: $scope.pairArr
-//            }];
-
-        var myObj = new FormData();
-        myObj.append('buy',$scope.buyArr);
-        myObj.append('sell',$scope.sellArr);
-        myObj.append('pair',$scope.pairArr);
-
-
-        $http.post('/api/fillter', myObj, {
-            transformRequest: angular.identity,
-            headers: { 'Content-Type': undefined }
-        }).then(function(response){
-            $scope.arbtGridOptions.data = response.data[0].data.sort(function (a, b) {
+        $scope.filterData = [];
+        if( ($scope.buyArr.length === 0) && ($scope.sellArr.length === 0) && ($scope.pairArr.length === 0) ){
+            $scope.filterData = $scope.tableData;
+        } else {
+        $scope.tableData.forEach(function(item){
+            var test = false;
+            $scope.buyArr.forEach(function(buyItem){
+                if( item.buy_here == buyItem ){
+                    test = true;
+                }
+            });
+            $scope.sellArr.forEach(function(sellItem){
+                if( item.sell_here == sellItem ){
+                    test = true;
+                }
+            });
+            $scope.pairArr.forEach(function(pairItem){
+                if( item.crypto_pair == pairItem ){
+                    test = true;
+                }
+            });
+            if(test === true ) {
+                $scope.filterData.push(item);
+            }
+        });
+        }
+        console.log($scope.filterData);
+        $scope.arbtGridOptions.data = $scope.filterData.sort(function (a, b) {
                 return b.type - a.type;
             });
-        })
+
+//        var myObj = new FormData();
+//        myObj.append('buy',$scope.buyArr);
+//        myObj.append('sell',$scope.sellArr);
+//        myObj.append('pair',$scope.pairArr);
+//
+//
+//        $http.post('/api/filter', myObj, {
+//            transformRequest: angular.identity,
+//            headers: { 'Content-Type': undefined }
+//        }).then(function(response){
+//            $scope.arbtGridOptions.data = response.data[0].data.sort(function (a, b) {
+//                return b.type - a.type;
+//            });
+//        })
 
     };
 
@@ -208,4 +231,4 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
     })()
 }]);
 
-            $http.post('/ServerRequest/PostDataResponse', data, config)
+//            $http.post('/ServerRequest/PostDataResponse', data, config)
