@@ -1,9 +1,12 @@
 var app = angular.module('app');
 
-// app.config(function ($interpolateProvider) {
-//     $interpolateProvider.startSymbol('//').endSymbol('//');
-// });
-
+ //app.config(function ($interpolateProvider) {
+ //    $interpolateProvider.startSymbol('//').endSymbol('//');
+ //});
+//app.config(function($httpProvider) {
+//    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+//    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+//});
 app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
 
     // $scope.currency = {};
@@ -172,6 +175,7 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
             });
         });
 
+
 //        var myObj = [{
 //                name: 'buy', value: $scope.buyArr
 //            },
@@ -196,9 +200,12 @@ app.controller('homeController', ['$scope', '$http', function ($scope, $http) {
                 return b.type - a.type;
             });
         })
+
     };
 
     (function () {
         $scope.getServerData();
     })()
 }]);
+
+            $http.post('/ServerRequest/PostDataResponse', data, config)
